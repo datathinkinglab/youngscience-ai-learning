@@ -133,24 +133,20 @@
       }
     }
   </style>
+<style id="company-logo-style">
+.company-logo{display:block;position:relative;width:260px;aspect-ratio:560/90;overflow:hidden;background:#fff;border-radius:4px;flex-shrink:0}
+.company-logo img{display:block;position:absolute;width:107.142857%;max-width:none;height:auto;left:-3.571429%;top:-200%}
+.lecture-logo{width:190px;border:0;padding:0;cursor:pointer}
+.company-logo:focus-visible{outline:2px solid #67e0c3;outline-offset:3px}
+@media(max-width:640px){.company-logo{width:220px}.lecture-logo{width:120px}}
+</style>
 </head>
 <body class="h-screen w-screen flex flex-col select-none antialiased bg-[#090e17]">
 
   <!-- Top Navigation Header -->
   <header class="h-14 md:h-16 glass-panel border-b border-slate-800/80 flex items-center justify-between px-3 md:px-6 z-40 shrink-0 gap-2 no-print">
     <!-- Brand / Course Title -->
-    <div class="flex items-center gap-2.5 sm:gap-3 cursor-pointer shrink-0" onclick="goToHome()">
-      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 shrink-0">
-        <i class="fa-solid fa-dna text-sm sm:text-base"></i>
-      </div>
-      <div class="min-w-0">
-        <div class="flex items-center gap-2">
-          <span class="font-extrabold tracking-tight text-white text-xs sm:text-sm md:text-base">YOUNG SCIENCE</span>
-          <span class="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 font-semibold border border-brand-500/30">AI Literacy</span>
-        </div>
-        <p class="text-[10px] sm:text-[11px] text-slate-400 hidden xs:block truncate">영사이언스 임직원 생성형 AI 실무 역량 강화</p>
-      </div>
-    </div>
+    <button class="company-logo lecture-logo" type="button" onclick="goToHome()" aria-label="영사이언스 공통강의 개요로 이동"><img src="company-logo.png" alt="YOUNGSCIENCE 영사이언스" width="600" height="446"></button>
 
     <!-- Module Tabs -->
     <nav class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto no-scrollbar max-w-[48vw] sm:max-w-none">
