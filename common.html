@@ -134,11 +134,11 @@
     }
   </style>
 <style id="company-logo-style">
-.company-logo{display:block;position:relative;width:260px;aspect-ratio:560/90;overflow:hidden;background:#fff;border-radius:4px;flex-shrink:0}
-.company-logo img{display:block;position:absolute;width:107.142857%;max-width:none;height:auto;left:-3.571429%;top:-200%}
-.lecture-logo{width:190px;border:0;padding:0;cursor:pointer}
+.company-logo{display:flex;align-items:center;position:relative;width:280px;padding:10px 12px;overflow:hidden;background:#fff;border-radius:5px;flex-shrink:0}
+.company-logo img{display:block;position:static;width:100%;max-width:100%;height:auto}
+.lecture-logo{width:210px;border:0;padding:8px 10px;cursor:pointer}
 .company-logo:focus-visible{outline:2px solid #67e0c3;outline-offset:3px}
-@media(max-width:640px){.company-logo{width:220px}.lecture-logo{width:120px}}
+@media(max-width:640px){.company-logo{width:220px}.lecture-logo{width:130px;padding:6px}}
 </style>
 </head>
 <body class="h-screen w-screen flex flex-col select-none antialiased bg-[#090e17]">
@@ -146,7 +146,7 @@
   <!-- Top Navigation Header -->
   <header class="h-14 md:h-16 glass-panel border-b border-slate-800/80 flex items-center justify-between px-3 md:px-6 z-40 shrink-0 gap-2 no-print">
     <!-- Brand / Course Title -->
-    <button class="company-logo lecture-logo" type="button" onclick="goToHome()" aria-label="영사이언스 공통강의 개요로 이동"><img src="company-logo.png" alt="YOUNGSCIENCE 영사이언스" width="600" height="446"></button>
+    <button class="company-logo lecture-logo" type="button" onclick="goToHome()" aria-label="영사이언스 공통강의 개요로 이동"><img src="company-logo-hd.png" alt="YOUNGSCIENCE 영사이언스" width="9492" height="1152"></button>
 
     <!-- Module Tabs -->
     <nav class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto no-scrollbar max-w-[48vw] sm:max-w-none">
