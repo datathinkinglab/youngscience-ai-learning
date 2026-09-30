@@ -5,7 +5,7 @@
 - index.html: 메인 페이지
 - style.css: 메인 페이지 스타일
 - common.html: 공통과정 강의 원본
-- management-finance-hr.html: 재무·경영기획·인사 직무교육 (43장)
+- management-finance-hr.html: 재무·경영기획·인사 직무교육 (48장). 바이브코딩 개요와 Project → FAQ 웹앱 실습 포함
 - management-sales.html: 이전 강의 주소에서 새 주소로 이동
 - instructor-profile.png: 강사소개 캐리커처 원본
 - 실습_샘플데이터/: 강의 상단 메뉴에서 개별 다운로드하는 교육용 가상 파일 4종
