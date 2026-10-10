@@ -116,25 +116,67 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+#top-navbar{min-height:46px;background:#0f172a;border-bottom:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:relative;z-index:60;gap:12px}
+    #sample-download-menu { position: relative; color: #e2e8f0; font-size: 12px; }
+    #sample-download-menu summary { list-style: none; cursor: pointer; padding: 7px 11px; border: 1px solid #475569; border-radius: 7px; background: #1e293b; font-weight: 700; white-space: nowrap; }
+    #sample-download-menu summary::-webkit-details-marker { display: none; }
+    #sample-download-menu[open] summary { background: #0369a1; border-color: #38bdf8; }
+    #sample-download-menu .sample-links { position: absolute; top: 38px; right: 0; width: 286px; background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; border-radius: 9px; padding: 6px; box-shadow: 0 16px 30px rgba(0,0,0,.25); z-index: 200; }
+    #sample-download-menu .sample-links a { display: block; padding: 9px 10px; border-radius: 5px; color: #0f172a; text-decoration: none; font-size: 12px; }
+    #sample-download-menu .sample-links a:hover, #sample-download-menu .sample-links a:focus { background: #e0f2fe; }
+    #sample-download-menu .sample-links small { display: block; color: #64748b; font-size: 10px; margin-top: 2px; }
+@media(max-width:640px){#top-navbar{padding:8px 12px;flex-wrap:wrap}#sales-controls{padding:8px 12px}#sales-controls>div{flex-wrap:wrap}}
+</style>
 </head>
 <body class="bg-slate-100 text-slate-800 flex flex-col min-h-screen">
 
   <!-- Header Bar -->
-  <header class="no-print bg-[#090e1f] text-white px-5 lg:px-8 py-3 flex items-center justify-between border-b border-slate-800 sticky top-0 z-40 shadow-md">
-    <div class="flex items-center space-x-3">
-      <div class="flex items-center space-x-2.5">
-        <span class="w-3.5 h-3.5 rounded-full bg-blue-500 animate-pulse"></span>
-        <span class="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
-          <span>YOUNG SCIENCE</span>
-          <span class="text-xs px-2.5 py-1 rounded bg-blue-600/90 font-medium">영업 맞춤형 AI 실무</span>
-        </span>
-      </div>
-      <div class="hidden md:flex items-center text-xs text-slate-400 border-l border-slate-700 pl-3.5 space-x-2">
-        <span class="text-slate-300 font-medium text-xs sm:text-sm">현업 적용 실무 워크북</span>
-      </div>
-    </div>
+  <header id="top-navbar" class="no-print">
+    <button onclick="window.location.href='./'" title="AI 러닝 허브로 돌아가기" class="flex items-center gap-3 text-left focus:outline-none group">
+      <div class="flex items-center gap-2.5 py-1 px-2 rounded-lg hover:bg-slate-800 transition">
+        <!-- Exact DTL Speech-Bubble Grid Symbol -->
+        <svg class="w-7 h-7 shrink-0" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 20C12 11.1634 19.1634 4 28 4H92C100.837 4 108 11.1634 108 20V76C108 84.8366 100.837 92 92 92H38L18 108V92H28C19.1634 92 12 84.8366 12 76V20Z" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+          <rect x="25" y="20" width="14" height="14" rx="3.5" fill="#f8fafc"/>
+          <rect x="45" y="20" width="14" height="14" rx="3.5" fill="#94a3b8"/>
+          <rect x="65" y="20" width="14" height="14" rx="3.5" fill="#64748b"/>
+          <rect x="85" y="20" width="14" height="14" rx="3.5" fill="#475569"/>
 
-    <!-- Navigation & Controls -->
+          <rect x="25" y="40" width="14" height="14" rx="3.5" fill="#0284c7"/>
+          <rect x="45" y="40" width="14" height="14" rx="3.5" fill="#64748b"/>
+          <rect x="65" y="40" width="14" height="14" rx="3.5" fill="#475569"/>
+          <rect x="85" y="40" width="14" height="14" rx="3.5" fill="#334155"/>
+
+          <rect x="25" y="60" width="14" height="14" rx="3.5" fill="#64748b"/>
+          <rect x="45" y="60" width="14" height="14" rx="3.5" fill="#475569"/>
+          <rect x="65" y="60" width="14" height="14" rx="3.5" fill="#94a3b8"/>
+          <rect x="85" y="60" width="14" height="14" rx="3.5" fill="#cbd5e1"/>
+        </svg>
+        <div class="flex flex-col leading-tight">
+          <span class="font-extrabold text-sm tracking-tight text-white group-hover:text-sky-400 transition font-sans">영사이언스 AI 실무과정</span>
+          <span class="text-[10px] text-slate-400 font-medium tracking-wide">영업 · CRM · BANT · 견적</span>
+        </div>
+      </div>
+      <span class="text-xs text-slate-400 border-l border-slate-700 pl-3 hidden sm:inline">
+        ChatGPT 계정·워크스페이스 설정 확인
+      </span>
+    </button>
+
+    <div class="flex items-center gap-3 text-xs">
+      <details id="sample-download-menu"><summary aria-label="실습파일 다운로드 메뉴">실습파일 다운로드 ▾</summary><div class="sample-links"><a href="./실습_샘플데이터/YoungScience_Sales_Leads_교정본.csv" download>영업 리드 데이터<small>CSV · BANT 평가 / 교육용 가상 자료</small></a></div></details>
+      <span class="bg-sky-950/80 text-sky-300 border border-sky-700/60 px-3 py-1 rounded flex items-center gap-1.5 font-medium">
+        <i class="fa-solid fa-building-shield"></i>
+        <span>가상 데이터 실습</span>
+      </span>
+      <a href="https://www.datathinkinglab.com" target="_blank" class="text-slate-400 hover:text-slate-200 flex items-center gap-1 transition">
+        <i class="fa-solid fa-globe"></i>
+        <span class="hidden md:inline">datathinkinglab.com</span>
+      </a>
+    </div>
+  </header>
+<div id="sales-controls" class="no-print flex justify-end px-5 py-2 bg-slate-900 border-b border-slate-800 text-white">    <!-- Navigation & Controls -->
     <div class="flex items-center space-x-2 sm:space-x-3">
       <!-- PDF Print Button -->
       <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition text-xs sm:text-sm font-semibold flex items-center gap-1.5 border border-slate-700 shadow-sm" title="PDF로 저장 또는 인쇄 (단축키 P)">
@@ -165,7 +207,7 @@
         </button>
       </div>
     </div>
-  </header>
+  </div>
 
   <!-- Toast Alert -->
   <div id="toastNotification" class="fixed bottom-14 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl border border-slate-700 text-sm font-medium flex items-center space-x-2.5 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
