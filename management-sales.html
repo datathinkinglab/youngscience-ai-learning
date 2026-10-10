@@ -129,7 +129,13 @@
     #sample-download-menu .sample-links small { display: block; color: #64748b; font-size: 10px; margin-top: 2px; }
 @media(max-width:640px){#top-navbar{padding:8px 12px;flex-wrap:wrap}#sales-controls{padding:8px 12px}#sales-controls>div{flex-wrap:wrap}}
 </style>
-</head>
+<style>
+#controller{min-height:60px;background:#0f172a;border-top:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px;position:fixed;bottom:0;left:0;right:0;z-index:50}
+body{padding-bottom:60px}
+#controller>div{flex-shrink:0}#controller>div:nth-child(2){flex-shrink:1}
+@media(max-width:900px){#controller{padding:10px 12px;flex-wrap:wrap;gap:8px}#controller>div:nth-child(2){display:none}body{padding-bottom:100px}}
+@media print{body{padding-bottom:0!important}#controller{display:none!important}}
+</style></head>
 <body class="bg-slate-100 text-slate-800 flex flex-col min-h-screen">
 
   <!-- Header Bar -->
@@ -176,38 +182,7 @@
       </a>
     </div>
   </header>
-<div id="sales-controls" class="no-print flex justify-end px-5 py-2 bg-slate-900 border-b border-slate-800 text-white">    <!-- Navigation & Controls -->
-    <div class="flex items-center space-x-2 sm:space-x-3">
-      <!-- PDF Print Button -->
-      <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition text-xs sm:text-sm font-semibold flex items-center gap-1.5 border border-slate-700 shadow-sm" title="PDF로 저장 또는 인쇄 (단축키 P)">
-        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-        <span>PDF 저장 / 인쇄</span>
-      </button>
 
-      <div class="flex items-center bg-slate-800 rounded-lg border border-slate-700 px-3 py-1.5 text-xs sm:text-sm font-mono text-white">
-        <span id="currentSlideNum" class="text-blue-400 font-bold text-sm">1</span>
-        <span class="text-slate-500 mx-1.5">/</span>
-        <span id="totalSlideNum" class="text-slate-400">50</span>
-      </div>
-
-      <button id="overviewBtn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="목차 보기 (단축키 O)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-      </button>
-
-      <button id="fullscreenBtn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="전체화면 (단축키 F)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-      </button>
-
-      <div class="flex items-center space-x-1.5">
-        <button id="prevBtn" class="p-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition shadow-sm" title="이전 슬라이드 (←)">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-        </button>
-        <button id="nextBtn" class="p-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition shadow-sm" title="다음 슬라이드 (→)">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- Toast Alert -->
   <div id="toastNotification" class="fixed bottom-14 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl border border-slate-700 text-sm font-medium flex items-center space-x-2.5 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
@@ -2026,20 +2001,33 @@ Young Science Co., Ltd.
   </div>
 
   <!-- Footer Controls -->
-  <footer class="no-print bg-white border-t border-slate-200 px-5 py-3 flex items-center justify-between text-sm text-slate-600 sticky bottom-0 z-30 shadow-sm">
-    <div class="flex items-center space-x-2.5">
-      <span class="font-extrabold text-slate-900">Data Thinking Lab</span>
-      <span>•</span>
-      <span class="hidden sm:inline font-medium">영사이언스 AI 영업 실무 워크북</span>
+  <footer id="controller" class="no-print">
+    <div class="flex items-center gap-3 text-xs text-slate-300">
+      <span class="font-bold text-sky-400">영사이언스 AI 실무과정</span>
+      <span class="text-slate-600">|</span>
+      <span class="font-mono text-slate-400"><span id="currentSlideNum">1</span> / <span id="totalSlideNum">50</span></span>
     </div>
 
-    <!-- Slide progress bar -->
-    <div class="hidden md:flex flex-1 max-w-sm mx-8 bg-slate-200 h-2 rounded-full overflow-hidden">
-      <div id="progressBar" class="bg-blue-600 h-full transition-all duration-300" style="width: 2%;"></div>
+    <div class="w-2/5 bg-slate-800 h-1.5 rounded-full overflow-hidden">
+      <div id="progressBar" class="bg-sky-500 h-full transition-all duration-300" style="width: 2.08%;"></div>
     </div>
 
-    <div class="flex items-center space-x-2">
-      <span class="hidden sm:inline text-slate-500 text-xs">단축키: ← → 이동 · O 목차 · F 전체화면 · B 화면끄기 · P 인쇄/PDF</span>
+    <div class="flex items-center gap-2">
+      <button onclick="window.print()" title="PDF 저장 / 인쇄 (P)" class="text-xs bg-slate-800 hover:bg-slate-700 text-sky-300 border border-sky-600/40 px-3 py-1.5 rounded transition flex items-center gap-1.5">
+        <i class="fa-solid fa-file-pdf"></i> PDF 출력
+      </button>
+      <button id="overviewBtn" title="목차 (O)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded transition flex items-center gap-1.5">
+        <i class="fa-solid fa-grip"></i> 목차 (O)
+      </button>
+      <button id="prevBtn" title="이전 슬라이드 (←)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded transition">
+        <i class="fa-solid fa-chevron-left"></i> 이전
+      </button>
+      <button id="nextBtn" title="다음 슬라이드 (→)" class="text-xs bg-sky-600 hover:bg-sky-500 text-white font-bold px-4 py-1.5 rounded transition">
+        다음 <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <button id="fullscreenBtn" title="전체화면 (F)" aria-label="전체화면" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded transition">
+        <i class="fa-solid fa-expand"></i>
+      </button>
     </div>
   </footer>
 
