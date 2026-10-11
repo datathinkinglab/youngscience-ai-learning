@@ -541,13 +541,7 @@ body{padding-bottom:60px}
             </h3>
             <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
               <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <span class="font-extrabold text-blue-800">BANT (리드 평가 프레임워크)</span>
-                <p class="text-slate-600 mt-1 text-xs sm:text-sm">
-                  • <strong>Budget(예산)</strong>: 고객의 구매 가능 예산 확보 여부<br>
-                  • <strong>Authority(의사결정권)</strong>: 실제 구매 최종 결재권자의 관여 수준<br>
-                  • <strong>Need(니즈/필요성)</strong>: 기존 장비 고장, 공정 확장 등 구체적 시급성<br>
-                  • <strong>Timeline(일정)</strong>: 납품 및 설치 완료 요구 목표 시점
-                </p>
+                <span class="font-extrabold text-blue-800">BANT (리드 평가 프레임워크)</span><div class="mt-2"><button type="button" onclick="openBantHelp(this)" class="bant-help-button">ⓘ BANT 활용 가이드</button></div>
               </div>
               <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
                 <span class="font-extrabold text-indigo-800">FOB (Free On Board, 본선인도조건)</span>
@@ -825,7 +819,7 @@ K제약사 박수현 수석연구원은 Bio-X 50L의 센서/튜빙 멸균 일체
           <span class="badge bg-blue-600 text-white">실습 1-2</span>
           <h2 class="text-3xl font-extrabold text-slate-900 mt-1.5">BANT 점수 기반 리드 스코어링 & 등급 판정</h2>
         </div>
-        <span class="text-sm font-mono text-slate-500">Practice 1-2</span>
+        <button type="button" onclick="openBantHelp(this)" class="bant-help-button">ⓘ BANT 활용 가이드</button>
       </div>
 
       <p class="mt-4 text-sm sm:text-base text-slate-700">
@@ -2497,6 +2491,46 @@ Young Science Co., Ltd.
 
     window.onload = calcAll;
   <\/script>
+
+<dialog id="bant-help-dialog" aria-labelledby="bant-help-title">
+<div class="bant-help-head"><div><small>영업 실무 참고</small><h2 id="bant-help-title">BANT, 어떻게 활용하나요?</h2></div><button type="button" onclick="closeBantHelp()" aria-label="BANT 가이드 닫기">✕ 닫기</button></div>
+<div class="bant-help-body">
+<p><strong>BANT는 고객의 구매 조건을 확인하고 다음 영업 행동을 정하는 틀입니다.</strong> AI에는 확인된 정보를 정리하고 정해진 기준으로 계산하는 역할을 맡깁니다.</p>
+<h3>네 가지 확인 질문</h3>
+<table><thead><tr><th>항목</th><th>고객에게 확인할 내용</th></tr></thead><tbody>
+<tr><td><strong>B · Budget</strong><br>예산</td><td>예산은 얼마이며, 확보되었나요? 승인 조건과 부가세 포함 여부도 확인합니다.</td></tr>
+<tr><td><strong>A · Authority</strong><br>결정권</td><td>누가 검토하고 누가 최종 승인하나요? 직함보다 실제 승인 권한과 위임 근거를 확인합니다.</td></tr>
+<tr><td><strong>N · Need</strong><br>필요성</td><td>왜 도입하나요? 장비 불량·긴급대체, 신규 라인 증설, 단순 검토 중 확인된 사유를 기록합니다.</td></tr>
+<tr><td><strong>T · Timeline</strong><br>일정</td><td>언제까지 도입해야 하나요? 고객의 희망일과 공급사가 확인한 납기를 구분합니다.</td></tr>
+</tbody></table>
+<h3>실무 적용 순서</h3>
+<ol><li>미팅 메모에서 고객 진술과 확인 근거를 추출합니다.</li><li>누락되거나 모호한 조건은 고객·내부 담당자에게 확인합니다.</li><li>확인된 조건만 채점표에 매핑하고 총점·등급을 계산합니다.</li><li>등급별 행동에 담당자·기한을 붙이고, 조건이 바뀌면 다시 평가합니다.</li></ol>
+<h3>실습에서 결과를 검증하는 방법</h3>
+<p>교육용 평가일은 <strong>2026-07-01</strong>입니다. 교정 데이터의 총점은 한림바이오랩 <strong>93</strong>, 한국의과대 <strong>64</strong>, 셀젠파마 <strong>78</strong>, 옵티멈진 <strong>23</strong>, 성남 바이오클러스터 <strong>79점</strong>입니다.</p>
+<p>같은 데이터와 규칙이면 점수와 등급은 같아야 합니다. 설명 문구는 달라질 수 있지만 점수가 다르면 <strong>입력 필드·기준 매핑·합계</strong>를 대조하세요. 도입 사유를 지운 뒤에도 같은 점수가 나오면 추정이 섞였는지 확인합니다.</p>
+<div class="bant-help-note"><strong>미확인 ≠ 0점</strong><br>근거가 누락된 항목은 ‘확인 필요’, 총점·등급은 ‘판정 보류’로 처리합니다. 명시적으로 미정·미확보인 예산과 미정인 일정만 교육 규칙에 따라 0점입니다.</div>
+<h3>점수 이후에 할 일</h3>
+<p><strong>Tier 1 · 80점 이상:</strong> 영업팀장 방문 및 특송 일정 사전 확보 검토<br><strong>Tier 2 · 60~79점:</strong> 3일 내 맞춤 제안서 발송 및 데모 조율<br><strong>Tier 3 · 59점 이하:</strong> 표준 카탈로그 송부 후 문의 대기</p>
+<p class="bant-help-note">이 점수와 행동 규칙은 교육용 가상 기준입니다. 점수는 구매 확률을 뜻하지 않습니다. 실제 고객 관리는 회사 기준을 적용하고, 납기·기술 적합성·할인 조건은 별도로 확인합니다.</p>
+</div></dialog>
+<style>
+.bant-help-button{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.bant-help-button:hover{background:#bae6fd}.bant-help-button:focus-visible{outline:3px solid #0284c7;outline-offset:3px}
+#bant-help-dialog{border:0;border-radius:16px;padding:0;width:min(850px,94vw);max-height:86vh;background:#fff;color:#0f172a;box-shadow:0 25px 80px #0006}
+#bant-help-dialog::backdrop{background:#0f172acc}
+.bant-help-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;background:#0f172a;color:#fff}
+.bant-help-head h2{font-size:22px;font-weight:800}.bant-help-head small{color:#7dd3fc}.bant-help-head button{background:#334155;border-radius:6px;padding:8px 12px;white-space:nowrap}
+.bant-help-body{padding:24px;line-height:1.75;font-size:15px}.bant-help-body h3{font-size:17px;font-weight:800;margin:20px 0 8px;color:#0369a1}.bant-help-body table{width:100%;border-collapse:collapse}.bant-help-body th,.bant-help-body td{border:1px solid #cbd5e1;padding:10px;text-align:left}.bant-help-body th{background:#f1f5f9}.bant-help-body td:first-child{width:150px}.bant-help-body ol{list-style:decimal;padding-left:24px}.bant-help-body p{margin-bottom:12px}.bant-help-note{background:#eff6ff;border-left:4px solid #0284c7;padding:12px;margin-top:14px}
+@media print{#bant-help-dialog,.bant-help-button{display:none!important}}
+</style>
+<script>
+let bantHelpTrigger;
+function openBantHelp(trigger){bantHelpTrigger=trigger;document.getElementById('bant-help-dialog').showModal();}
+function closeBantHelp(){document.getElementById('bant-help-dialog').close();}
+document.getElementById('bant-help-dialog').addEventListener('close',()=>{if(bantHelpTrigger)bantHelpTrigger.focus();});
+document.getElementById('bant-help-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeBantHelp();}});
+document.addEventListener('keydown',e=>{if(document.getElementById('bant-help-dialog').open&&e.key!=='Escape'){e.stopImmediatePropagation();}},true);
+</script>
 </body>
 </html>`;
       const textArea = document.createElement("textarea");
