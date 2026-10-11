@@ -2492,6 +2492,26 @@ Young Science Co., Ltd.
     window.onload = calcAll;
   <\/script>
 
+</body>
+</html>`;
+      const textArea = document.createElement("textarea");
+      textArea.value = fallbackHTML;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      showToast("예비 완성본 코드가 복사되었습니다! 메모장에 붙여넣으세요.");
+    }
+
+    // Initialize slide deck on load
+    window.addEventListener('load', () => {
+      showSlide(0);
+    });
+  </script>
+
 <dialog id="bant-help-dialog" aria-labelledby="bant-help-title">
 <div class="bant-help-head"><div><small>영업 실무 참고</small><h2 id="bant-help-title">BANT, 어떻게 활용하나요?</h2></div><button type="button" onclick="closeBantHelp()" aria-label="BANT 가이드 닫기">✕ 닫기</button></div>
 <div class="bant-help-body">
@@ -2531,24 +2551,5 @@ document.getElementById('bant-help-dialog').addEventListener('close',()=>{if(ban
 document.getElementById('bant-help-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeBantHelp();}});
 document.addEventListener('keydown',e=>{if(document.getElementById('bant-help-dialog').open&&e.key!=='Escape'){e.stopImmediatePropagation();}},true);
 </script>
-</body>
-</html>`;
-      const textArea = document.createElement("textarea");
-      textArea.value = fallbackHTML;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-999999px";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      showToast("예비 완성본 코드가 복사되었습니다! 메모장에 붙여넣으세요.");
-    }
-
-    // Initialize slide deck on load
-    window.addEventListener('load', () => {
-      showSlide(0);
-    });
-  </script>
 </body>
 </html>
