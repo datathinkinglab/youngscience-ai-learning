@@ -1316,7 +1316,7 @@ Young Science Co., Ltd.
             <div class="text-sm font-extrabold text-slate-800 mb-3">🔍 견적 연산 결과 3단계 역산 검증 방법</div>
             <div class="space-y-3 mt-2 text-sm text-slate-700">
               <div class="p-3 rounded-xl bg-rose-50 border border-rose-200">
-                <div class="font-bold text-rose-900">⚠️ 치명적 오류: Markup(할증) vs Margin(마진율)</div>
+                <div class="font-bold text-rose-900">⚠️ 치명적 오류: Markup(할증) vs Margin(마진율)</div><button type="button" class="bant-help-button" style="margin-top:8px" onclick="openPricingHelp(this)" aria-haspopup="dialog" aria-controls="pricing-help-dialog">Markup과 Margin 차이 · 계산 예시 보기 ↗</button>
                 <div class="text-slate-700 mt-1 leading-relaxed text-xs sm:text-sm">
                   많은 AI 모델이 <code class="text-rose-700 font-bold bg-white px-1 py-0.5 rounded">원가 × 1.25 = 167,320,000원</code>으로 잘못 계산합니다. 이 경우 실제 마진율은 <strong>20.0%</strong>로 급락하여 <strong>11,154,667원의 마진 누수</strong>가 발생합니다!
                 </div>
@@ -2550,6 +2550,55 @@ function closeBantHelp(){document.getElementById('bant-help-dialog').close();}
 document.getElementById('bant-help-dialog').addEventListener('close',()=>{if(bantHelpTrigger)bantHelpTrigger.focus();});
 document.getElementById('bant-help-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeBantHelp();}});
 document.addEventListener('keydown',e=>{if(document.getElementById('bant-help-dialog').open&&e.key!=='Escape'){e.stopImmediatePropagation();}},true);
+</script>
+
+<dialog id="pricing-help-dialog" aria-labelledby="pricing-help-title">
+<div class="bant-help-head"><div><small>20페이지 · 견적 계산 용어</small><h2 id="pricing-help-title">Markup과 Margin: 무엇으로 나누나요?</h2></div><button type="button" onclick="closePricingHelp()" aria-label="Markup과 Margin 설명 닫기">✕ 닫기</button></div>
+<div class="bant-help-body">
+<p><strong>Markup은 원가 대비 이익 비율, Margin은 판매가 대비 이익 비율입니다.</strong> 같은 25%라도 기준 금액이 달라 판매가가 달라집니다.</p>
+<p>아래에서 <strong>이익액 = 판매가 − 원가</strong>이며, 판매가는 부가세 별도 공급가입니다. 이 비율은 정한 원가 범위를 기준으로 계산하며 회사 전체의 순이익률을 뜻하지 않습니다.</p>
+<table><thead><tr><th>구분</th><th>Markup · 원가 가산율</th><th>Margin · 매출 기준 이익률</th></tr></thead><tbody>
+<tr><td>기준 금액</td><td><strong>원가</strong></td><td><strong>판매가</strong></td></tr>
+<tr><td>비율 계산</td><td>(판매가 − 원가) ÷ 원가 × 100</td><td>(판매가 − 원가) ÷ 판매가 × 100</td></tr>
+<tr><td>판매가 계산</td><td>원가 × (1 + Markup 비율)</td><td>원가 ÷ (1 − Margin 비율)</td></tr>
+<tr><td>원가 100만원, 목표 25%</td><td>100만원 × 1.25 = <strong>125만원</strong><br>이익 25만원</td><td>100만원 ÷ 0.75 ≈ <strong>133만 3,333원</strong><br>이익 약 33만 3,333원</td></tr>
+<tr><td>판매가로 역산한 Margin</td><td>25만원 ÷ 125만원 = <strong>20%</strong></td><td>약 33만 3,333원 ÷ 133만 3,333원 ≈ <strong>25%</strong></td></tr>
+</tbody></table>
+<div class="bant-help-note"><strong>기억하기: 원가에 25%를 더하면 Markup 25%이며, Margin은 20%입니다.</strong><br>목표 Margin이 25%이면 판매가의 75%가 원가이므로, 원가를 0.75로 나눕니다. Markup 방식 자체가 틀린 것은 아닙니다. 목표가 Margin인데 Markup 공식을 쓰는 것이 오류입니다.</div>
+<h3>20페이지의 실습 숫자에 적용하기</h3>
+<ol><li>수입원가 <strong>133,856,000원</strong>, 목표 <strong>Margin 25%</strong>를 확인합니다.</li>
+<li>공급가 = 133,856,000 ÷ 0.75 ≈ <strong>178,474,667원</strong>입니다.</li>
+<li>공급가에 1.25를 곱하는 대신, 원가에 1.25를 곱하면 <strong>167,320,000원</strong>이 됩니다. 이 가격의 Margin은 <strong>20%</strong>입니다.</li>
+<li>두 공급가의 차이는 약 <strong>11,154,667원</strong>입니다. 같은 원가라면 이익액도 그만큼 차이 납니다.</li></ol>
+<p><strong>협상 후에는 다시 계산하세요.</strong> 공급가를 178,000,000원으로 낮추면 이익액은 44,144,000원, 실제 Margin은 약 <strong>24.80%</strong>입니다. 25%가 반드시 필요한 조건이면 절사 가격을 그대로 적용하면 안 됩니다.</p>
+<h3>견적 작성 전에 확인할 세 가지</h3>
+<ol><li>“25%”가 <strong>원가 가산율인지, 판매가 기준 Margin인지</strong> 먼저 확인합니다.</li><li>원가에 포함할 운임·관세·설치비 등 범위를 확인하고, 이 실습의 VAT는 공급가 산출 후 별도로 계산합니다.</li><li>할인·절사 후 최종 공급가로 Margin을 역산합니다. 계산 중에는 정밀도를 유지하고 최종 금액에서 반올림 기준을 적용합니다.</li></ol>
+<h3>GPT에 바로 입력할 실습 프롬프트</h3>
+<div id="pricing-help-prompt" style="white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:10px">교육용 견적 계산입니다. 원가는 133,856,000원이고 목표는 판매가 기준 Margin 25%입니다.
+1. Markup과 Margin의 기준 금액 차이를 설명하세요.
+2. 공급가 = 원가 / (1 - 0.25)로 계산하세요.
+3. 원가에 25%를 가산한 판매가와 그때의 실제 Margin도 비교하세요.
+4. 공급가를 178,000,000원으로 조정할 경우 실제 Margin을 다시 계산하세요.
+5. 이 실습에서는 VAT 10%를 공급가 계산 후 별도로 더하세요.
+계산 중에는 반올림하지 말고, 최종 금액은 원 단위 반올림, 비율은 소수 둘째 자리로 표시하세요. 원가·공급가·이익액·Markup·Margin·VAT 포함 금액을 구분하세요.</div>
+<button type="button" class="bant-help-button" style="margin-top:10px" onclick="copyText('pricing-help-prompt')">실습 프롬프트 복사</button>
+<p style="margin-top:12px;font-size:13px;color:#64748b">확인 질문: 원가 100만원에 25%를 더해 125만원에 팔았다면 Margin은 몇 %일까요? 정답은 20%입니다.</p>
+</div></dialog>
+<style>
+#pricing-help-dialog{border:0;border-radius:16px;padding:0;width:min(920px,94vw);max-height:86vh;background:white;color:#0f172a;box-shadow:0 25px 80px #0006}
+#pricing-help-dialog::backdrop{background:#0f172acc}
+#pricing-help-dialog .bant-help-body{overflow-wrap:anywhere}
+#pricing-help-dialog td:first-child{width:145px}
+@media(max-width:640px){#pricing-help-dialog .bant-help-body{padding:16px;font-size:13px}#pricing-help-dialog td,#pricing-help-dialog th{padding:7px}#pricing-help-dialog .bant-help-head h2{font-size:18px}}
+@media print{#pricing-help-dialog{display:none!important}}
+</style>
+<script>
+let pricingHelpTrigger;
+function openPricingHelp(trigger){pricingHelpTrigger=trigger;document.getElementById('pricing-help-dialog').showModal();}
+function closePricingHelp(){document.getElementById('pricing-help-dialog').close();}
+document.getElementById('pricing-help-dialog').addEventListener('close',()=>{pricingHelpTrigger?.focus();});
+document.getElementById('pricing-help-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closePricingHelp();}});
+document.addEventListener('keydown',e=>{if(document.getElementById('pricing-help-dialog').open&&e.key!=='Escape')e.stopImmediatePropagation();},true);
 </script>
 </body>
 </html>
