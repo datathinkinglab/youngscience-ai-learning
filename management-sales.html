@@ -2581,7 +2581,7 @@ document.addEventListener('keydown',e=>{if(document.getElementById('bant-help-di
 4. 공급가를 178,000,000원으로 조정할 경우 실제 Margin을 다시 계산하세요.
 5. 이 실습에서는 VAT 10%를 공급가 계산 후 별도로 더하세요.
 계산 중에는 반올림하지 말고, 최종 금액은 원 단위 반올림, 비율은 소수 둘째 자리로 표시하세요. 원가·공급가·이익액·Markup·Margin·VAT 포함 금액을 구분하세요.</div>
-<button type="button" class="bant-help-button" style="margin-top:10px" onclick="copyText('pricing-help-prompt')">실습 프롬프트 복사</button>
+<button type="button" class="bant-help-button" style="margin-top:10px" onclick="copyPricingPrompt()">실습 프롬프트 복사</button>
 <p style="margin-top:12px;font-size:13px;color:#64748b">확인 질문: 원가 100만원에 25%를 더해 125만원에 팔았다면 Margin은 몇 %일까요? 정답은 20%입니다.</p>
 </div></dialog>
 <style>
@@ -2593,6 +2593,12 @@ document.addEventListener('keydown',e=>{if(document.getElementById('bant-help-di
 @media print{#pricing-help-dialog{display:none!important}}
 </style>
 <script>
+async function copyPricingPrompt(){
+ const dialog=document.getElementById('pricing-help-dialog');
+ const text=document.getElementById('pricing-help-prompt').textContent.trim();
+ try{await navigator.clipboard.writeText(text);showToast('클립보드에 복사되었습니다!');}
+ catch(error){const field=document.createElement('textarea');field.value=text;field.setAttribute('aria-label','복사용 실습 프롬프트');dialog.querySelector('.bant-help-body').appendChild(field);field.focus();field.select();try{if(document.execCommand('copy')){field.remove();showToast('클립보드에 복사되었습니다!');}else{showToast('선택된 문구를 Ctrl+C로 복사하세요.');}}catch(error){showToast('선택된 문구를 Ctrl+C로 복사하세요.');}}
+}
 let pricingHelpTrigger;
 function openPricingHelp(trigger){pricingHelpTrigger=trigger;document.getElementById('pricing-help-dialog').showModal();}
 function closePricingHelp(){document.getElementById('pricing-help-dialog').close();}
