@@ -832,6 +832,17 @@
 <div><div class="cover-meta-label">진행 방식</div><div class="cover-meta-value text-sky-400">단계별 실습 + 강사 시연 · 핵심 산출물 4종</div></div>
 </div>
 </section>
+<section class="slide" data-title="AI 영상 시연: 데이터씽킹랩 이승묵" id="slide-intro-video">
+<div class="slide-header"><div class="slide-header-left"><span class="slide-module-tag">AI VIDEO DEMO</span><h2 class="slide-title">사진 한 장으로 만드는 AI 소개 영상</h2></div><div class="slide-header-right"><span class="company-stamp">YOUNG SCIENCE</span><span class="slide-number-indicator">02 / 50</span></div></div>
+<div class="slide-body" style="align-items:center;justify-content:center;gap:12px;overflow:hidden;">
+<video controls playsinline preload="metadata" aria-label="데이터씽킹랩 이승묵 소개 영상" style="display:block;width:100%;max-width:880px;max-height:495px;aspect-ratio:16/9;object-fit:contain;border-radius:12px;background:#0f172a;">
+<source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3IooheQYGiqnqgYsEid3RggYYQn/3e317605-fb52-4894-b7e2-775b7c529699.mp4" type="video/mp4"/>
+영상을 재생할 수 없습니다. 아래 링크로 열어 주세요.
+</video>
+<p style="font-size:15px;color:#475569;margin:0;">사진 기반 AI 영상 · 한국어 음성 멘트 삽입 <a href="https://d2ol7oe51mr4n9.cloudfront.net/user_3IooheQYGiqnqgYsEid3RggYYQn/3e317605-fb52-4894-b7e2-775b7c529699.mp4" target="_blank" rel="noopener" style="color:#0369a1;text-decoration:underline;margin-left:16px;">영상 새 창에서 보기 ↗</a></p>
+</div>
+<div class="slide-footer-bar"><span class="font-bold text-slate-600">영사이언스 AI 마케팅 실무</span><span>DATA THINKING LAB</span></div>
+</section>
 <section class="slide" data-title="교육 과정 및 모듈 구성" id="slide-2"><div class="slide-header"><div class="slide-header-left"><span class="slide-module-tag">CURRICULUM OVERVIEW</span><h2 class="slide-title" contenteditable="true">교육 과정 &amp; 모듈 구성</h2></div><div class="slide-header-right"><span class="company-stamp">YOUNG SCIENCE</span><span class="slide-number-indicator">02 / 49</span></div></div><div class="slide-body"><table class="custom-table"><thead><tr><th style="width:260px;">모듈명</th><th>주요 실습 및 학습 내용</th><th style="width:220px;">주요 산출물</th></tr></thead><tbody>
 <tr><td><span style="color:#0284c7;font-weight:700;">Module 1. AI 마케팅 워크플로우</span></td><td>제품 정보 재구성, Pain Point 발굴, Campaign Brief 작성</td><td><strong>Campaign Brief</strong></td></tr>
 <tr><td><span style="color:#0284c7;font-weight:700;">Module 2. 마케팅 문구 작성</span></td><td>타깃별 카피, 채널별 변환, A/B 테스트 후보 작성</td><td><strong>핵심 카피 세트</strong></td></tr>
@@ -2347,7 +2358,11 @@ MKT-003,YS Precision Pipette X,연구용 피펫/소모품,"실험실 연구원; 
 
 
 let currentSlide = 1;
-const totalSlides = 49;
+const totalSlides = document.querySelectorAll('.slide').length;
+document.querySelectorAll('.slide').forEach((slide, i) => {
+  const label = slide.querySelector('.slide-number-indicator');
+  if (label) label.textContent = `${String(i + 1).padStart(2, '0')} / ${totalSlides}`;
+});
 const titles = Array.from(document.querySelectorAll('.slide')).map((slide, i) =>
   `${String(i + 1).padStart(2, '0')}. ${slide.dataset.title || slide.querySelector('.slide-title')?.textContent?.trim() || `Slide ${i + 1}`}`
 );
@@ -2356,6 +2371,7 @@ function showSlide(index) {
   index = Math.max(1, Math.min(totalSlides, index));
   document.querySelectorAll('.slide').forEach((slide, idx) => {
     slide.classList.toggle('active', idx + 1 === index);
+    if (idx + 1 !== index) slide.querySelectorAll('video').forEach(video => video.pause());
   });
   currentSlide = index;
   const indicator = document.getElementById('slide-indicator');
@@ -2369,7 +2385,7 @@ function prevSlide() { if (currentSlide > 1) showSlide(currentSlide - 1); }
 
 window.addEventListener('keydown', (e) => {
   const t = e.target;
-  if (t && (t.isContentEditable || ['INPUT','TEXTAREA','SELECT'].includes(t.tagName))) return;
+  if (t && (t.isContentEditable || ['INPUT','TEXTAREA','SELECT','VIDEO'].includes(t.tagName))) return;
   if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
   else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
   else if (e.key.toLowerCase() === 'o') { e.preventDefault(); toggleOverview(); }
