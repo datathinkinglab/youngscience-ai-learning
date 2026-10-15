@@ -1,0 +1,163 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>영사이언스 연구개발 관리 · 교육용</title>
+<style>
+:root{font-family:system-ui,'Malgun Gothic',sans-serif;color:#16243a;background:#f2f5fa;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{background:#0b1528;color:#fff;padding:30px max(24px,calc((100vw - 1400px)/2))}header p{color:#b8cbe5;line-height:1.6;margin:8px 0 0}h1{font-size:28px;margin:8px 0}h2{font-size:21px;margin:0 0 16px}.eyebrow{font-size:12px;letter-spacing:.1em;color:#85b8ff}main{max-width:1448px;margin:auto;padding:24px}.notice{padding:16px 20px;background:#e9f1ff;border-left:4px solid #326fcb;line-height:1.65;font-size:14px;margin-bottom:20px}.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.bar label{font-weight:700;font-size:14px}.spacer{flex:1}button,.filebutton{font:inherit;font-size:14px;font-weight:650;border:1px solid #bfd0e7;background:white;border-radius:7px;padding:10px 14px;cursor:pointer;color:#19365b}button:hover,.filebutton:hover{background:#edf4ff}button.primary{background:#235dc6;color:white;border-color:#235dc6}button.danger{color:#b12d38;border-color:#e4b6bb}input,select,textarea{font:inherit;font-size:14px;padding:10px;border:1px solid #bfccdc;border-radius:6px;background:#fff;color:#16243a;max-width:100%}input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #8eb9f0;outline-offset:2px}input[type=checkbox]{width:17px;height:17px;vertical-align:middle}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}.metric{background:white;padding:19px 22px;border:1px solid #dde5ef;border-radius:9px}.metric span{font-size:13px;color:#59708a}.metric strong{display:block;font-size:32px;margin-top:5px}.metric.late strong{color:#bb283d}.panel{background:white;border:1px solid #dde5ef;border-radius:10px;padding:22px;margin-bottom:22px}.muted{font-size:13px;color:#5f7187;line-height:1.65}.filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:12px}#query{width:320px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px;min-width:1070px}th{text-align:left;color:#56708e;background:#f6f8fc;font-size:12px;white-space:nowrap;padding:12px}td{padding:15px 12px;border-bottom:1px solid #e8edf4;vertical-align:top;line-height:1.6}.project-name{display:block;min-width:180px;font-weight:700}.id{font-size:12px;color:#66809e}.status{display:inline-block;border-radius:5px;padding:3px 7px;font-size:12px;white-space:nowrap;background:#edf2f9}.badge-late{background:#fff0f1;color:#b12d38}.badge-done{background:#e8f6ee;color:#1f794c}.badge-today{background:#fff5df;color:#8a5905}.actions{display:flex;gap:6px}.actions button{padding:6px 9px;font-size:12px}.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:13px;font-weight:700}.field.wide{grid-column:span 3}textarea{min-height:70px;resize:vertical}a{color:#235dc6}.feedback{padding:14px 17px;border-radius:7px;background:#e8f6ee;color:#1f6648;margin-bottom:16px;white-space:pre-wrap}.feedback.error{background:#fff0f1;color:#a91d32}.feedback[hidden]{display:none}#saveState{font-size:12px;color:#5a6d85}#saveState.error{color:#a91d32}#formError{color:#a91d32;font-weight:600;line-height:1.7}.footer{font-size:12px;color:#5f7187;padding:0 0 24px}details summary{cursor:pointer;font-weight:700}#empty{padding:30px;text-align:center;color:#60758f}.link-line{font-size:12px;display:block}.form-actions{display:flex;gap:10px;align-items:center;margin-top:18px}.version{float:right;color:#b8cbe5;font-size:13px}@media(max-width:800px){.metrics{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.field.wide{grid-column:span 1}main{padding:16px}.panel{padding:16px}header{padding:24px}h1{font-size:23px}}
+</style></head><body>
+<header><span class="eyebrow">YOUNG SCIENCE · WORKSHOP</span><span class="version">교육용 v1.0</span><h1>연구개발 관리</h1><p>과제의 담당자·기한·다음 조치와 근거자료를 한곳에서 확인합니다.</p></header>
+<main><div class="notice"><strong>교육용 가상 자료 · 개인 브라우저용 시제품</strong><br>실제 회사 과제·담당자·제품 자료가 아닙니다. 이 브라우저에 저장되며 팀원이나 다른 PC와 자동 동기화되지 않습니다. 중요한 변경 후 JSON 백업을 보관하세요.</div>
+<div class="bar"><label for="referenceDate">판정 기준일</label><input id="referenceDate" type="date" required><span class="spacer"></span><button id="exportBtn">전체 JSON 백업</button><label class="filebutton" for="importFile">JSON 복원</label><input id="importFile" type="file" accept=".json,application/json" hidden><button id="resetDemo">샘플 6건 복원</button><button id="clearAll" class="danger">전체 비우기</button></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div><p id="saveState" role="status"></p>
+<div class="metrics"><div class="metric"><span>전체 과제</span><strong id="total">0</strong></div><div class="metric"><span>미완료</span><strong id="active">0</strong></div><div class="metric"><span>완료</span><strong id="done">0</strong></div><div class="metric late"><span>지연</span><strong id="late">0</strong></div><div class="metric"><span>자료 미확인</span><strong id="unverified">0</strong></div></div>
+<section class="panel"><div class="bar"><h2>과제 목록</h2><span class="spacer"></span><span id="visibleCount" class="muted"></span></div><div class="filters"><label for="query" class="muted">검색</label><input id="query" placeholder="과제명·ID·담당자·다음 조치"><label for="statusFilter" class="muted">상태</label><select id="statusFilter"><option value="">전체 상태</option><option>대기 중</option><option>진행 중</option><option>보류</option><option>완료</option></select><label><input id="onlyUnverified" type="checkbox"> 자료 미확인만</label><button id="clearFilters">필터 해제</button></div><p class="muted">요약 숫자는 전체 자료 기준입니다. 지연은 ‘완료 아님 + 기한 있음 + 기한이 기준일보다 앞섬’으로 계산합니다.</p><div class="table-wrap"><table><thead><tr><th>과제</th><th>담당자</th><th>기한</th><th>진행상태</th><th>우선순위</th><th>다음 조치 / 이슈</th><th>근거자료</th><th>관리</th></tr></thead><tbody id="projectRows"></tbody></table></div><p id="empty" hidden>조건에 맞는 과제가 없습니다.</p></section>
+<section class="panel" id="editor"><h2 id="formTitle">새 과제 등록</h2><p class="muted">* 필수 항목 · 담당자와 기한이 미정이면 비워 두세요. 자료 확인 완료는 사람이 원문을 대조한 뒤 선택합니다.</p><form id="projectForm" novalidate><div class="form-grid" id="formFields"></div><p id="formError" role="alert"></p><div class="form-actions"><button type="submit" class="primary" id="saveBtn">과제 등록</button><button type="button" id="cancelEdit">입력 초기화</button></div></form></section>
+<details class="panel"><summary>개인 점검용 기준 답안</summary><p class="muted">샘플 복원 후 기준일 2026-10-15: 전체 6, 미완료 5, 완료 1, 지연 1, 자료 미확인 4.<br>이담당 검색: RD-001·RD-005. 완료 필터: RD-003. 기준일 2026-10-16: 지연 2건.<br>등록·수정 후 새로고침, JSON 백업과 복원, 중복 ID와 잘못된 파일 거부를 직접 확인하세요.</p></details>
+<p class="footer">AI 보조 제작 · 교육용 참고 구현 · 실제 도입 전 회사의 자료 사용 기준과 기능 점검이 필요합니다. 팀 공용 서비스에는 별도 인증·권한·중앙 저장·변경이력이 필요합니다.</p></main>
+<script>
+'use strict';
+const DEMO={
+  "schemaVersion": 1,
+  "referenceDate": "2026-10-15",
+  "projects": [
+    {
+      "id": "RD-001",
+      "name": "신제품 기술자료 검토",
+      "category": "제품 검토",
+      "owner": "이담당",
+      "dueDate": "2026-10-14",
+      "status": "진행 중",
+      "priority": "높음",
+      "nextAction": "공급사에 누락된 평가 조건 요청",
+      "sourceTitle": "교육용 제품 소개서 A",
+      "sourceUrl": "",
+      "sourceStatus": "미확인",
+      "issue": "평가 기간 미기재"
+    },
+    {
+      "id": "RD-002",
+      "name": "고객 적용성 문의 정리",
+      "category": "고객 기술문의",
+      "owner": "김담당",
+      "dueDate": "2026-10-20",
+      "status": "대기 중",
+      "priority": "보통",
+      "nextAction": "고객의 사용 환경 확인",
+      "sourceTitle": "교육용 고객문의 B",
+      "sourceUrl": "",
+      "sourceStatus": "확인 완료",
+      "issue": ""
+    },
+    {
+      "id": "RD-003",
+      "name": "샘플 평가 의뢰서 작성",
+      "category": "샘플 평가",
+      "owner": "박담당",
+      "dueDate": "2026-10-12",
+      "status": "완료",
+      "priority": "낮음",
+      "nextAction": "완료 자료 보관",
+      "sourceTitle": "교육용 의뢰서 C",
+      "sourceUrl": "",
+      "sourceStatus": "확인 완료",
+      "issue": ""
+    },
+    {
+      "id": "RD-004",
+      "name": "시험성적서 항목 확인",
+      "category": "자료 확인",
+      "owner": "",
+      "dueDate": "",
+      "status": "보류",
+      "priority": "높음",
+      "nextAction": "담당자와 기한 지정",
+      "sourceTitle": "교육용 성적서 D",
+      "sourceUrl": "",
+      "sourceStatus": "미확인",
+      "issue": "담당자·기한 미정"
+    },
+    {
+      "id": "RD-005",
+      "name": "공급사 보완자료 요청",
+      "category": "자료 확인",
+      "owner": "이담당",
+      "dueDate": "2026-10-15",
+      "status": "진행 중",
+      "priority": "보통",
+      "nextAction": "요청 메일 초안 검토",
+      "sourceTitle": "교육용 자료요청 E",
+      "sourceUrl": "",
+      "sourceStatus": "미확인",
+      "issue": "추가 자료 회신 대기"
+    },
+    {
+      "id": "RD-006",
+      "name": "내부 검토회의 준비",
+      "category": "회의 준비",
+      "owner": "최담당",
+      "dueDate": "2026-10-18",
+      "status": "진행 중",
+      "priority": "높음",
+      "nextAction": "미해결 이슈 목록 작성",
+      "sourceTitle": "교육용 회의안 F",
+      "sourceUrl": "",
+      "sourceStatus": "미확인",
+      "issue": ""
+    }
+  ]
+};
+const KEY='youngscience-rd-management-workshop-v1';
+const statuses=['대기 중','진행 중','보류','완료'], priorities=['높음','보통','낮음'], verified=['미확인','확인 완료'];
+const fields=[['id','과제 ID *','text'],['name','과제명 *','text'],['category','업무 유형','text'],['owner','담당자','text'],['dueDate','기한','date'],['status','진행상태',statuses],['priority','우선순위',priorities],['sourceStatus','근거 확인 상태',verified],['sourceTitle','근거 자료명','text'],['sourceUrl','근거 URL (선택)','url'],['nextAction','다음 조치 *','textarea'],['issue','남은 이슈','textarea']];
+let data,editing=null,storageBlocked=false;
+const $=id=>document.getElementById(id);
+const clone=x=>JSON.parse(JSON.stringify(x));
+function show(message,error=false){$('feedback').textContent=message;$('feedback').className='feedback'+(error?' error':'');$('feedback').hidden=false;}
+function validDate(v){if(!/^\d{4}-\d{2}-\d{2}$/.test(v))return false;const d=new Date(v+'T00:00:00Z');return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===v;}
+function validURL(v){try{const u=new URL(v);return ['https:','http:'].includes(u.protocol);}catch{return false;}}
+function validateFile(value){
+ if(!value||value.schemaVersion!==1||!validDate(value.referenceDate)||!Array.isArray(value.projects))throw Error('버전·기준일·projects 배열을 확인하세요.');
+ if(value.projects.length>5000)throw Error('교육용 시제품은 최대 5,000건까지 복원할 수 있습니다.');
+ const ids=new Set();const result=[];
+ value.projects.forEach((p,i)=>{if(!p||typeof p!=='object'||Array.isArray(p))throw Error((i+1)+'번째 과제 형식 오류');let row={};
+  fields.forEach(([key])=>{if(typeof p[key]!=='string')throw Error((i+1)+'번째 과제 '+key+'는 문자열이어야 합니다.');row[key]=p[key].trim();if(row[key].length>5000)throw Error(key+' 값이 너무 깁니다.');});
+  if(!row.id||!row.name||!row.nextAction)throw Error((i+1)+'번째 과제의 ID·과제명·다음 조치는 필수입니다.');
+  if(ids.has(row.id))throw Error('중복 ID: '+row.id);ids.add(row.id);
+  if(!statuses.includes(row.status)||!priorities.includes(row.priority)||!verified.includes(row.sourceStatus))throw Error(row.id+'의 상태 또는 우선순위가 올바르지 않습니다.');
+  if(row.dueDate&&!validDate(row.dueDate))throw Error(row.id+'의 날짜가 올바르지 않습니다.');
+  if(row.sourceUrl&&!validURL(row.sourceUrl))throw Error(row.id+'의 URL은 http 또는 https여야 합니다.');
+  result.push(row);
+ });return {schemaVersion:1,referenceDate:value.referenceDate,projects:result};
+}
+function save(){
+ if(storageBlocked){$('saveState').textContent='기존 저장 자료 오류로 자동 저장이 중지되었습니다. JSON 백업 또는 복원을 사용하세요.';$('saveState').className='error';return;}
+ try{localStorage.setItem(KEY,JSON.stringify(data));$('saveState').textContent='이 브라우저에 저장됨 · '+new Date().toLocaleTimeString('ko-KR');$('saveState').className='';}
+ catch{$('saveState').textContent='브라우저 저장 실패 · 현재 화면은 유지됩니다. JSON 백업을 다운로드하세요.';$('saveState').className='error';}
+}
+function isLate(p){return p.status!=='완료'&&p.dueDate!==''&&p.dueDate<data.referenceDate;}
+function node(tag,text,cls){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;}
+function render(){
+ $('referenceDate').value=data.referenceDate;
+ const p=data.projects;$('total').textContent=p.length;$('done').textContent=p.filter(x=>x.status==='완료').length;$('active').textContent=p.filter(x=>x.status!=='완료').length;$('late').textContent=p.filter(isLate).length;$('unverified').textContent=p.filter(x=>x.sourceStatus==='미확인').length;
+ const q=$('query').value.trim().toLocaleLowerCase();const list=p.filter(x=>(!q||[x.id,x.name,x.owner,x.nextAction].join(' ').toLocaleLowerCase().includes(q))&&(!$('statusFilter').value||x.status===$('statusFilter').value)&&(!$('onlyUnverified').checked||x.sourceStatus==='미확인'));
+ $('visibleCount').textContent='표시 '+list.length+' / 전체 '+p.length+'건';$('empty').hidden=!!list.length;$('projectRows').replaceChildren();
+ list.forEach(p=>{const tr=node('tr');tr.dataset.id=p.id;let td=node('td');td.append(node('span',p.name,'project-name'),node('span',p.id+' · '+(p.category||'유형 미정'),'id'));tr.append(td);
+ tr.append(node('td',p.owner||'미지정'));td=node('td');td.append(node('div',p.dueDate||'기한 미정'));if(isLate(p))td.append(node('span','지연','status badge-late'));else if(p.status!=='완료'&&p.dueDate===data.referenceDate)td.append(node('span','오늘 기한','status badge-today'));tr.append(td);
+ td=node('td');td.append(node('span',p.status,'status'+(p.status==='완료'?' badge-done':'')));tr.append(td,node('td',p.priority));td=node('td');td.append(node('div',p.nextAction));if(p.issue)td.append(node('span','이슈: '+p.issue,'muted'));tr.append(td);
+ td=node('td');td.append(node('div',p.sourceTitle||'자료 미등록'),node('span',p.sourceStatus,'status'+(p.sourceStatus==='확인 완료'?' badge-done':'')));if(p.sourceUrl){const a=node('a','근거 열기','link-line');a.href=p.sourceUrl;a.target='_blank';a.rel='noopener noreferrer';td.append(a);}tr.append(td);
+ td=node('td');const buttons=node('div',undefined,'actions');const edit=node('button','수정');edit.setAttribute('aria-label',p.id+' 수정');edit.onclick=()=>editProject(p.id);const del=node('button','삭제','danger');del.setAttribute('aria-label',p.id+' 삭제');del.onclick=()=>{if(confirm('“'+p.name+'” 과제를 삭제할까요?')){data.projects=data.projects.filter(x=>x.id!==p.id);if(editing===p.id)resetForm();save();render();show('과제를 삭제했습니다.');}};buttons.append(edit,del);td.append(buttons);tr.append(td);$('projectRows').append(tr);
+ });
+}
+fields.forEach(([key,label,type])=>{const wrap=node('div',undefined,'field'+(type==='textarea'?' wide':''));const lab=node('label',label);lab.htmlFor='f-'+key;let input;if(Array.isArray(type)){input=node('select');type.forEach(x=>{const o=node('option',x);o.value=x;input.append(o);});}else{input=node(type==='textarea'?'textarea':'input');if(type!=='textarea')input.type=type;input.maxLength=5000;}input.id='f-'+key;input.name=key;if(['id','name','nextAction'].includes(key))input.required=true;wrap.append(lab,input);$('formFields').append(wrap);});
+function resetForm(){editing=null;$('projectForm').reset();$('f-id').readOnly=false;$('f-priority').value='보통';$('formTitle').textContent='새 과제 등록';$('saveBtn').textContent='과제 등록';$('cancelEdit').textContent='입력 초기화';$('formError').textContent='';}
+function editProject(id){const p=data.projects.find(x=>x.id===id);editing=id;fields.forEach(([k])=>$('f-'+k).value=p[k]);$('f-id').readOnly=true;$('formTitle').textContent='과제 수정 · '+id;$('saveBtn').textContent='수정 저장';$('cancelEdit').textContent='수정 취소';$('formError').textContent='';$('editor').scrollIntoView({behavior:'smooth',block:'start'});}
+$('projectForm').onsubmit=ev=>{ev.preventDefault();const p={};fields.forEach(([k])=>p[k]=$('f-'+k).value.trim());try{let items=data.projects.filter(x=>x.id!==editing);items.push(p);const next=validateFile({...data,projects:items});if(editing){const previousIndex=data.projects.findIndex(x=>x.id===editing);const row=next.projects.pop();next.projects.splice(previousIndex,0,row);}data=next;save();render();resetForm();show('과제를 저장했습니다.');}catch(e){$('formError').textContent=e.message;}};
+$('cancelEdit').onclick=resetForm;
+['query','statusFilter','onlyUnverified'].forEach(id=>$(id).addEventListener(id==='query'?'input':'change',render));
+$('clearFilters').onclick=()=>{$('query').value='';$('statusFilter').value='';$('onlyUnverified').checked=false;render();};
+$('referenceDate').onchange=()=>{const v=$('referenceDate').value;if(!validDate(v)){show('올바른 기준일을 선택하세요.',true);$('referenceDate').value=data.referenceDate;return;}data.referenceDate=v;save();render();};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});const u=URL.createObjectURL(blob);const a=node('a');a.href=u;a.download='연구개발관리_백업_'+data.referenceDate+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);show('전체 '+data.projects.length+'건의 백업 파일을 다운로드했습니다.');};
+$('importFile').onchange=async ev=>{const f=ev.target.files[0];if(!f)return;try{if(f.size>10000000)throw Error('10MB 이하의 JSON 파일을 선택하세요.');const next=validateFile(JSON.parse(await f.text()));if(confirm(next.projects.length+'건으로 현재 목록 전체를 교체할까요? 필요한 자료는 먼저 백업하세요.')){data=next;storageBlocked=false;resetForm();save();render();show('JSON '+next.projects.length+'건을 복원했습니다.');}else show('복원을 취소했습니다. 기존 목록을 유지합니다.');}catch(e){show('복원 실패: '+e.message+'\n기존 목록은 변경하지 않았습니다.',true);}finally{ev.target.value='';}};
+$('resetDemo').onclick=()=>{if(confirm('현재 목록을 교육용 샘플 6건으로 교체할까요? 필요한 자료는 먼저 백업하세요.')){data=clone(DEMO);storageBlocked=false;resetForm();$('query').value='';$('statusFilter').value='';$('onlyUnverified').checked=false;save();render();show('샘플 6건을 복원했습니다.');}};
+$('clearAll').onclick=()=>{if(confirm('모든 과제를 비울까요? 먼저 JSON 백업을 보관하세요.')){data.projects=[];storageBlocked=false;resetForm();save();render();show('과제를 모두 비웠습니다.');}};
+try{const raw=localStorage.getItem(KEY);data=raw===null?clone(DEMO):validateFile(JSON.parse(raw));}catch(e){data={schemaVersion:1,referenceDate:DEMO.referenceDate,projects:[]};storageBlocked=true;show('기존 브라우저 저장 자료를 읽지 못했습니다. 원본을 덮어쓰지 않고 빈 화면을 표시합니다. JSON 복원 또는 샘플 복원을 선택하세요.',true);}
+resetForm();render();save();
+</script></body></html>
+

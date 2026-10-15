@@ -1,0 +1,80 @@
+교육용 가상 자료입니다. 실제 회사 과제·고객·담당자가 아닙니다.
+기준일: 2026-10-15
+
+id: RD-001
+name: 신제품 기술자료 검토
+category: 제품 검토
+owner: 이담당
+dueDate: 2026-10-14
+status: 진행 중
+priority: 높음
+nextAction: 공급사에 누락된 평가 조건 요청
+sourceTitle: 교육용 제품 소개서 A
+sourceUrl: (미지정)
+sourceStatus: 미확인
+issue: 평가 기간 미기재
+
+id: RD-002
+name: 고객 적용성 문의 정리
+category: 고객 기술문의
+owner: 김담당
+dueDate: 2026-10-20
+status: 대기 중
+priority: 보통
+nextAction: 고객의 사용 환경 확인
+sourceTitle: 교육용 고객문의 B
+sourceUrl: (미지정)
+sourceStatus: 확인 완료
+issue: (미지정)
+
+id: RD-003
+name: 샘플 평가 의뢰서 작성
+category: 샘플 평가
+owner: 박담당
+dueDate: 2026-10-12
+status: 완료
+priority: 낮음
+nextAction: 완료 자료 보관
+sourceTitle: 교육용 의뢰서 C
+sourceUrl: (미지정)
+sourceStatus: 확인 완료
+issue: (미지정)
+
+id: RD-004
+name: 시험성적서 항목 확인
+category: 자료 확인
+owner: (미지정)
+dueDate: (미지정)
+status: 보류
+priority: 높음
+nextAction: 담당자와 기한 지정
+sourceTitle: 교육용 성적서 D
+sourceUrl: (미지정)
+sourceStatus: 미확인
+issue: 담당자·기한 미정
+
+id: RD-005
+name: 공급사 보완자료 요청
+category: 자료 확인
+owner: 이담당
+dueDate: 2026-10-15
+status: 진행 중
+priority: 보통
+nextAction: 요청 메일 초안 검토
+sourceTitle: 교육용 자료요청 E
+sourceUrl: (미지정)
+sourceStatus: 미확인
+issue: 추가 자료 회신 대기
+
+id: RD-006
+name: 내부 검토회의 준비
+category: 회의 준비
+owner: 최담당
+dueDate: 2026-10-18
+status: 진행 중
+priority: 높음
+nextAction: 미해결 이슈 목록 작성
+sourceTitle: 교육용 회의안 F
+sourceUrl: (미지정)
+sourceStatus: 미확인
+issue: (미지정)
