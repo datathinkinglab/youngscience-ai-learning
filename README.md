@@ -9,7 +9,7 @@
 - management-sales.html: 이전 영업 강의 주소
 - management-sales-v2.html: 현재 영업 직무교육
 - management-marketing.html: 마케팅 직무교육
-- management-rnd.html: 연구개발 관리 직무교육 (48장). 관리 웹앱 제작과 개인 기능 점검
+- management-rnd.html: R&D 직무교육 (60장). 연구윤리·논문/인허가 리서치·기술문서 자동화·관리 웹앱 제작과 개인 기능 점검
 - rnd/: 연구개발 관리 샘플 JSON·TXT, 개인 기능 점검표, 웹앱 완성 예시
 - instructor-profile.png: 강사소개 캐리커처 원본
 - 실습_샘플데이터/: 강의 상단 메뉴에서 개별 다운로드하는 교육용 가상 파일 4종
