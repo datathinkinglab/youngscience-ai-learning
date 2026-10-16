@@ -245,7 +245,16 @@ body.fullscreen-pure-slide{padding-bottom:0}
 .slide-footer-box>div:last-child{white-space:nowrap}
 @media(max-width:700px){.slide-body-box{justify-content:flex-start!important;padding:18px!important}.slide-body-box pre{font-size:14px}.slide-body-box table{font-size:14px}.slide-body-box .grid-cols-2,.slide-body-box .grid-cols-3,.slide-body-box .grid-cols-4{grid-template-columns:1fr}.slide-header-title{font-size:23px!important}.slide-header-sub{font-size:14px!important}.lesson-row h3{font-size:18px}.lesson-row p{font-size:16px}.slide-body-box .h-full{height:auto}}
 @media print{.print-slide-page pre{font-size:12px!important;line-height:1.45;white-space:pre-wrap;overflow:visible}.source-note{font-size:10px}.print-slide-page:last-child{break-after:auto!important;page-break-after:auto!important;margin-bottom:0!important}}
-</style></head>
+</style><style id="journal-guide-style">
+.journal-guide-entry{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}.journal-guide-entry>span{font-size:13px;color:#64748b}.journal-guide-open{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid #7dd3fc;border-radius:8px;background:#e0f2fe;color:#075985;font-size:15px;font-weight:800;cursor:pointer}.journal-guide-open:hover{background:#bae6fd}
+#journal-guide-dialog{border:1px solid #cbd5e1;border-radius:16px;padding:0;width:min(980px,94vw);max-width:94vw;height:min(790px,90dvh);max-height:90dvh;margin:auto;background:#fff;color:#0f172a;box-shadow:0 24px 90px #0008;overflow:hidden;font:16px/1.75 Pretendard,system-ui,sans-serif}
+#journal-guide-dialog[open]{display:flex;flex-direction:column}#journal-guide-dialog::backdrop{background:#020617b8;backdrop-filter:blur(3px)}
+.journal-guide-head{background:#0f172a;color:#fff;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0}.journal-guide-head small{color:#7dd3fc;font-weight:700;font-size:12px;letter-spacing:.05em}.journal-guide-head h2{font-size:23px;font-weight:800;line-height:1.4;margin:3px 0 0}.journal-guide-close{border:1px solid #64748b;border-radius:7px;padding:7px 13px;background:#1e293b;color:#fff;white-space:nowrap;font-size:14px;cursor:pointer}
+.journal-guide-body{padding:24px 28px;overflow:auto;min-height:0;overscroll-behavior:contain;scrollbar-gutter:stable}.journal-guide-body section+section{border-top:1px solid #e2e8f0;margin-top:25px;padding-top:22px}.journal-guide-body h3{font-size:19px;font-weight:800;margin:0 0 10px;color:#0f172a}.journal-guide-body p{margin:9px 0}.journal-guide-body ul,.journal-guide-body ol{padding-left:24px;margin:10px 0;list-style:disc}.journal-guide-body ol{list-style:decimal}.journal-guide-body li{margin:7px 0}.journal-guide-body a{color:#0369a1;text-decoration:underline;text-underline-offset:3px}.journal-guide-lead{font-size:18px;font-weight:700;margin-top:0!important}.journal-guide-note{padding:12px 15px;border-left:4px solid #0284c7;background:#f0f9ff;color:#334155;font-size:14px}.journal-guide-source{font-size:12px;color:#64748b}.journal-guide-template{white-space:pre-wrap;overflow-wrap:anywhere;background:#0f172a;color:#f1f5f9;border-radius:10px;padding:18px;font:15px/1.8 Pretendard,system-ui,sans-serif;margin:12px 0}.journal-guide-copy{background:#0369a1;color:white;border-radius:7px;padding:9px 14px;font-size:14px;font-weight:700;cursor:pointer}.journal-guide-body details{margin-top:18px;border:1px solid #cbd5e1;border-radius:9px;padding:12px 16px}.journal-guide-body summary{font-weight:700;cursor:pointer}.journal-guide-body dl{margin-top:10px}.journal-guide-body dt{font-weight:700;margin-top:10px}.journal-guide-body dd{margin:3px 0 10px;color:#475569;font-size:14px}.journal-guide-foot{border-top:1px solid #e2e8f0;background:#f8fafc;padding:12px 24px;font-size:12px;color:#64748b;display:flex;justify-content:space-between;gap:12px;flex-shrink:0}.journal-guide-open:focus-visible,#journal-guide-dialog button:focus-visible,#journal-guide-dialog summary:focus-visible,#journal-guide-dialog a:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+@media(max-width:640px){#journal-guide-dialog{width:96vw;max-width:96vw;height:92dvh;max-height:92dvh;border-radius:12px}.journal-guide-head{padding:15px 16px}.journal-guide-head h2{font-size:19px}.journal-guide-body{padding:18px;font-size:15px}.journal-guide-body h3{font-size:18px}.journal-guide-foot{padding:10px 16px;flex-wrap:wrap;gap:3px}.journal-guide-entry>span{display:none}.journal-guide-template{font-size:14px}}
+@media print{#journal-guide-dialog,.journal-guide-entry{display:none!important}}
+</style>
+</head>
 <body class="flex flex-col h-screen overflow-hidden antialiased select-text">
 
   <!-- ================= TOP APPLICATION HEADER ================= -->
@@ -452,7 +461,7 @@ body.fullscreen-pure-slide{padding-bottom:0}
     "badge": "워터마크 원리 및 실무 대비",
     "title": "콘텐츠 출처 증명·워터마크·AI 사용 표시",
     "subtitle": "기술적 표시와 실제 내용 검토는 서로 다른 절차입니다",
-    "content": "<table class=\"lesson-table\"><thead><tr><th>방식<\/th><th>의미와 한계<\/th><\/tr><\/thead><tbody><tr><td>C2PA<\/td><td>서명된 출처·편집 이력 기록. 메타데이터가 제거될 수 있고 내용의 진실성을 보증하지 않음<\/td><\/tr><tr><td>SynthID<\/td><td>AI 생성 콘텐츠에 신호를 넣어 검출을 돕는 기술. 변형에 따른 한계가 있으며 모든 콘텐츠에 적용되지는 않음<\/td><\/tr><tr><td>사람이 읽는 표시<\/td><td>AI 사용 범위와 현재 검토 상태를 설명. 기술 워터마크나 실제 검토 기록을 대신하지 않음<\/td><\/tr><\/tbody><\/table><p class=\"lesson-note\"><strong>실무 3원칙:<\/strong> 원본·AI 초안 분리 → 문서명·페이지·DOI와 변경 이력 보존 → 검토자·검토일·미해결 항목 기록. 초안은 “AI 보조 작성 / 검토 미완료”로 시작합니다.<\/p><p class=\"source-note\">공식 근거 · <a href=\"https://c2pa.org/faqs/\" target=\"_blank\" rel=\"noopener\">C2PA FAQ<\/a> · <a href=\"https://deepmind.google/models/synthid/\" target=\"_blank\" rel=\"noopener\">SynthID<\/a> · 확인: 2026-10-15<\/p>"
+    "content": "<table class=\"lesson-table\"><thead><tr><th>방식<\/th><th>의미와 한계<\/th><\/tr><\/thead><tbody><tr><td>C2PA<\/td><td>서명된 출처·편집 이력 기록. 메타데이터가 제거될 수 있고 내용의 진실성을 보증하지 않음<\/td><\/tr><tr><td>SynthID<\/td><td>AI 생성 콘텐츠에 신호를 넣어 검출을 돕는 기술. 변형에 따른 한계가 있으며 모든 콘텐츠에 적용되지는 않음<\/td><\/tr><tr><td>사람이 읽는 표시<\/td><td>AI 사용 범위와 현재 검토 상태를 설명. 기술 워터마크나 실제 검토 기록을 대신하지 않음<\/td><\/tr><\/tbody><\/table><p class=\"lesson-note\"><strong>실무 3원칙:<\/strong> 원본·AI 초안 분리 → 문서명·페이지·DOI와 변경 이력 보존 → 검토자·검토일·미해결 항목 기록. 초안은 “AI 보조 작성 / 검토 미완료”로 시작합니다.<\/p><p class=\"source-note\">공식 근거 · <a href=\"https://c2pa.org/faqs/\" target=\"_blank\" rel=\"noopener\">C2PA FAQ<\/a> · <a href=\"https://deepmind.google/models/synthid/\" target=\"_blank\" rel=\"noopener\">SynthID<\/a> · 확인: 2026-10-15<\/p><div class=\"journal-guide-entry no-print\"><button type=\"button\" class=\"journal-guide-open\" aria-haspopup=\"dialog\" aria-controls=\"journal-guide-dialog\" onclick=\"openJournalGuide(this)\"><i class=\"fa-solid fa-book-open\" aria-hidden=\"true\"><\/i> 논문 투고 시 AI 활용 가이드 <span aria-hidden=\"true\">↗<\/span><\/button><span>저자 책임 · 선언문 예시 · 그림/도표 · 투고 전 점검<\/span><\/div>"
   },
   {
     "id": 10,
@@ -1200,6 +1209,7 @@ body.fullscreen-pure-slide{padding-bottom:0}
       document.getElementById('btn-print').onclick = printAllSlides;
 
       document.addEventListener('keydown', (e) => {
+        if (document.getElementById('journal-guide-dialog')?.open) return;
         if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
         if (e.key === 'ArrowRight' || e.key === ' ') {
           e.preventDefault();
@@ -1232,5 +1242,48 @@ body.fullscreen-pure-slide{padding-bottom:0}
       initDeck();
     }
   </script>
+
+<dialog id="journal-guide-dialog" aria-labelledby="journal-guide-title" aria-describedby="journal-guide-intro">
+ <header class="journal-guide-head"><div><small>RESEARCH ETHICS · 논문 투고 참고자료</small><h2 id="journal-guide-title">학술지 투고 시 AI 워터마크·활용 가이드</h2></div><button type="button" class="journal-guide-close" onclick="document.getElementById('journal-guide-dialog').close()" autofocus aria-label="논문 투고 가이드 닫기">닫기 <span aria-hidden="true">×</span></button></header>
+ <div class="journal-guide-body">
+  <p id="journal-guide-intro" class="journal-guide-lead">AI 사용 범위를 공개하고, 원자료와 실제 검토 기록을 남깁니다.</p>
+  <p class="journal-guide-note">투고처마다 AI 허용 범위와 선언 방식이 다릅니다. 아래는 실무 요약이며, 제출할 저널의 최신 <strong>Guide for Authors</strong>를 먼저 확인하세요.</p>
+  <section aria-labelledby="journal-detection"><h3 id="journal-detection">1. 유사도 검사·AI 탐지·워터마크를 구분하기</h3>
+   <ul><li><strong>유사도 검사:</strong> 기존 문헌과 겹치는 표현을 찾습니다. AI 사용 여부를 직접 증명하는 검사는 아닙니다.</li><li><strong>AI 탐지:</strong> 텍스트의 특징으로 AI 작성 가능성을 추정합니다. 오탐·미탐이 있어 점수만으로 작성 경위나 부정행위를 확정할 수 없습니다.</li><li><strong>워터마크·C2PA:</strong> 콘텐츠에 담긴 신호나 서명된 출처 정보를 확인합니다. 적용 여부와 보존 상태는 도구·파일·처리 과정에 따라 다릅니다.</li></ul>
+   <p class="journal-guide-note">GPT·Claude의 모든 출력에 통계적 워터마크가 있고 모든 투고 시스템이 이를 자동 검출한다고 일반화하지 않습니다. 탐지 도입 여부·방식·판정 기준은 투고처별 확인 사항입니다.</p>
+   <p class="journal-guide-source">근거: <a href="https://www.nature.com/nmeth/editorial-policies/plagiarism" target="_blank" rel="noopener">Nature 유사도 검사</a> · <a href="https://guides.turnitin.com/hc/en-us/articles/22774058814093-Using-the-AI-Writing-Report" target="_blank" rel="noopener">Turnitin 탐지 한계</a> · <a href="https://c2pa.org/faqs/" target="_blank" rel="noopener">C2PA FAQ</a></p>
+  </section>
+  <section aria-labelledby="journal-author"><h3 id="journal-author">2. 저자는 사람이며, AI 사용은 구체적으로 기록하기</h3>
+   <p>AI는 책임을 지는 저자 자격을 충족하지 못하므로 공동 저자로 등록하지 않습니다. 저자는 AI가 만든 부분까지 정확성·인용·연구윤리에 책임집니다. <a href="https://doi.org/10.24318/cCVRZBms" target="_blank" rel="noopener">COPE 저자 자격 지침</a></p>
+   <ul><li><strong>도구:</strong> 사용한 서비스·모델명, 확인 가능한 버전과 사용일을 기록합니다.</li><li><strong>목적·범위:</strong> 영문 교정, 번역, 초안, 코드, 분석, 그림 중 어디에 얼마나 활용했는지 명시합니다.</li><li><strong>사람의 검토:</strong> 원문·참고문헌·수치·코드 결과를 대조하고 실제 확인한 내용을 기록합니다.</li></ul>
+   <details><summary>선언문 위치와 공개 범위 확인 예시</summary><dl>
+    <dt><a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener">Elsevier</a></dt><dd>원고 준비에 사용한 AI는 참고문헌 앞 별도 선언문으로 공개합니다. 연구 방법에 사용했다면 Methods에 설명합니다. 단순 철자·문법 점검 등 예외와 해당 저널의 지침을 확인합니다.</dd>
+    <dt><a href="https://open.ieee.org/author-guidelines-for-artificial-intelligence-ai-generated-text/" target="_blank" rel="noopener">IEEE</a></dt><dd>AI 생성 콘텐츠 사용은 Acknowledgments 공개 지침을 확인합니다. 사용 도구와 적용한 부분·범위를 구체적으로 기록합니다.</dd>
+    <dt><a href="https://www.nature.com/nature-portfolio/editorial-policies/ai" target="_blank" rel="noopener">Nature Portfolio / Springer Nature</a></dt><dd>텍스트 작성 보조, 연구 방법, 이미지 활용을 구분해 해당 저널의 AI 정책과 제출 양식을 확인합니다. 하나의 선언 위치·예외를 모든 저널에 적용하지 않습니다.</dd>
+   </dl></details>
+  </section>
+  <section aria-labelledby="journal-declaration"><h3 id="journal-declaration">3. AI 사용 선언문 작성 예시</h3>
+   <p>대괄호를 실제 사용 내역으로 바꾸고 투고처의 지정 형식에 맞춥니다. 아래의 검토·책임 문구는 <strong>실제로 검토를 마친 뒤에만</strong> 사용합니다.</p>
+   <pre id="journal-declaration-text" class="journal-guide-template">During the preparation of this work, the author(s) used [TOOL / VERSION] for [PURPOSE AND SPECIFIC SCOPE]. After using this tool, the author(s) reviewed and edited the content as needed and take full responsibility for the content of the published article.</pre>
+   <button type="button" class="journal-guide-copy" id="journal-copy-declaration">선언문 예시 복사</button><span id="journal-copy-status" role="status" aria-live="polite" style="margin-left:10px;font-size:13px"></span>
+   <p class="journal-guide-source">첨부 문서의 선언문 틀을 정리한 예시입니다. 연구 방법·분석·그림에 AI를 사용했다면 별도의 상세 설명이 필요할 수 있습니다.</p>
+  </section>
+  <section aria-labelledby="journal-figures"><h3 id="journal-figures">4. 그림·도표는 사용 허용 여부부터 확인하기</h3>
+   <ul><li><strong>설명 그림·워크플로:</strong> 투고처가 허용하는 경우에만 사용하고, 요구하는 캡션·선언문에 도구와 활용 범위를 밝힙니다. 캡션을 달았다고 금지된 사용이 허용되지는 않습니다.</li><li><strong>데이터 차트:</strong> 실제 원자료와 재현 가능한 분석 결과에서 생성해야 합니다. 값을 만들어 넣거나 결과를 왜곡하지 않습니다.</li><li><strong>실험 이미지:</strong> 생성 이미지를 실제 관찰·측정 결과처럼 제시하지 않습니다. 원본과 처리 이력, 코드·설정을 보관합니다.</li><li><strong>파일·메타데이터:</strong> 출처 기록과 제공된 콘텐츠 자격증명을 보존합니다. TIFF·EPS·PNG 또는 C2PA를 모든 학술지의 공통 필수 형식으로 단정하지 않고 투고처 사양을 따릅니다.</li></ul>
+   <p class="journal-guide-source">그림 유형별 허용 범위 예시: <a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener">Elsevier 공식 AI 정책</a></p>
+  </section>
+  <section aria-labelledby="journal-checklist"><h3 id="journal-checklist">5. 투고 전 개인 점검</h3>
+   <ol><li>대상 저널의 최신 AI·이미지·저자 지침과 확인일을 기록합니다.</li><li>미공개 원고·고객정보를 승인되지 않은 도구에 입력하지 않습니다.</li><li>필요한 범위만 교정·수정하고 원문, 수정본, 사용 내역을 보관합니다.</li><li>출처·인용·숫자·그림·코드를 직접 검토하고 누락된 선언을 보완합니다.</li><li>기관의 승인된 검사 도구를 사용할 경우 보고서의 근거를 직접 확인합니다. 낮은 탐지 점수가 윤리 준수나 게재를 보장하지는 않습니다.</li></ol>
+  </section>
+ </div>
+ <footer class="journal-guide-foot"><span>첨부 가이드 요약 · 공식 출처 대조: 2026-10-16</span><span>Esc 또는 닫기 버튼으로 강의에 돌아가기</span></footer>
+</dialog>
+<script id="journal-guide-script">
+let journalGuideTrigger=null;
+function openJournalGuide(trigger){const dialog=document.getElementById('journal-guide-dialog');journalGuideTrigger=trigger;dialog.showModal();dialog.querySelector('.journal-guide-body').scrollTop=0;document.getElementById('journal-copy-status').textContent='';}
+document.getElementById('journal-guide-dialog').addEventListener('close',()=>{if(journalGuideTrigger?.isConnected)journalGuideTrigger.focus({preventScroll:true});});
+document.getElementById('journal-guide-dialog').addEventListener('click',event=>{if(event.target!==event.currentTarget)return;const r=event.currentTarget.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)event.currentTarget.close();});
+document.getElementById('journal-copy-declaration').addEventListener('click',async()=>{const status=document.getElementById('journal-copy-status'),text=document.getElementById('journal-declaration-text').textContent;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{const field=document.createElement('textarea');field.value=text;field.style.cssText='position:fixed;left:-9999px';document.getElementById('journal-guide-dialog').appendChild(field);field.focus();field.select();const copied=document.execCommand('copy');field.remove();document.getElementById('journal-copy-declaration').focus({preventScroll:true});if(!copied)throw Error('copy');}status.textContent='복사했습니다';}catch{status.textContent='복사할 문장을 선택해 Ctrl+C를 누르세요';}});
+</script>
 </body>
 </html>
